@@ -28,6 +28,6 @@ import {  MsalModule, MsalRedirectComponent } from '@azure/msal-angular';
     MsalModule
   ],
   providers: [],
-  bootstrap: [AppComponent, MsalRedirectComponent]
+  bootstrap: [MsalRedirectComponent]
 })
 export class AppModule { }
