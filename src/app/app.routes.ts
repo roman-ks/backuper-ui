@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { MsalGuard } from '@azure/msal-angular';
 import { SyncInfoComponent } from './sync-info/sync-info.component';
-
+import { getWindow } from 'ssr-window';
 /**
  * MSAL Angular can protect routes in your application
  * using MsalGuard. For more info, visit:
@@ -37,7 +37,7 @@ export const routes: Routes = [
     component: HomeComponent
   }
 ];
-
+const window = getWindow()
 const isIframe = window !== window.parent && !window.opener;
 
 @NgModule({
