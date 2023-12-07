@@ -1,9 +1,7 @@
 import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
 import { IPublicClientApplication, PublicClientApplication, InteractionType } from '@azure/msal-browser';
 import { MsalBroadcastService, MsalService, MSAL_GUARD_CONFIG, MSAL_INSTANCE, MsalGuardConfiguration } from '@azure/msal-angular';
 
-import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { msalConfig } from './auth-config';
 
@@ -21,13 +19,12 @@ export function MSALInstanceFactory(): IPublicClientApplication {
  */
 export function MSALGuardConfigFactory(): MsalGuardConfiguration {
   return { 
-    interactionType: InteractionType.Redirect,
+    interactionType: InteractionType.Redirect 
   }
 }
 
 export const appConfig: ApplicationConfig = {
-  providers: [
-    provideRouter(routes), 
+  providers: [ 
     provideClientHydration(),
     {
       provide: MSAL_GUARD_CONFIG,
@@ -36,7 +33,8 @@ export const appConfig: ApplicationConfig = {
     {
       provide: MSAL_INSTANCE,
       useFactory: MSALInstanceFactory
-    }, MsalService,
+    }, 
+    MsalService,
     MsalBroadcastService
 ]
 };
