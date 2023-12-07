@@ -6,7 +6,9 @@
  */
 
 import { LogLevel, Configuration, BrowserCacheLocation } from '@azure/msal-browser';
+import { getWindow } from 'ssr-window';
 
+const window = getWindow()
 const isIE = window.navigator.userAgent.indexOf("MSIE ") > -1 || window.navigator.userAgent.indexOf("Trident/") > -1;
 
 /**
@@ -15,7 +17,7 @@ const isIE = window.navigator.userAgent.indexOf("MSIE ") > -1 || window.navigato
  * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-browser/docs/configuration.md 
  */
 export const msalConfig: Configuration = {
-    auth: {
+    auth: { 
         clientId: '1acac050-09dc-45d0-bb2c-41f5ed300890', // This is the ONLY mandatory field that you need to supply.
         authority: 'https://login.microsoftonline.com/0915c3d1-7116-4c05-93f9-652979140471', // Defaults to "https://login.microsoftonline.com/common"
         redirectUri: '/', // Points to window.location.origin. You must register this URI on Azure portal/App Registration.
