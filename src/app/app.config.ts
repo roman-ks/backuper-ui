@@ -1,7 +1,7 @@
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { IPublicClientApplication, PublicClientApplication, InteractionType } from '@azure/msal-browser';
-import { MsalBroadcastService, MsalService, MSAL_GUARD_CONFIG, MSAL_INSTANCE, MsalGuardConfiguration } from '@azure/msal-angular';
+import { MsalBroadcastService, MsalService, MSAL_GUARD_CONFIG, MSAL_INSTANCE, MsalGuardConfiguration, MsalGuard } from '@azure/msal-angular';
 import { provideClientHydration } from '@angular/platform-browser';
 import { msalConfig } from './auth-config';
 import { routes } from './app.routes';
@@ -45,6 +45,7 @@ export const appConfig: ApplicationConfig = {
       initialNavigation: !isIframe ? 'enabledNonBlocking' : 'disabled'
     })),
     MsalService,
+    MsalGuard,
     MsalBroadcastService
 ]
 };
