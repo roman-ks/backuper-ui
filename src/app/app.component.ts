@@ -4,7 +4,7 @@ import { MSAL_GUARD_CONFIG, MsalBroadcastService, MsalGuardConfiguration, MsalSe
 import { InteractionStatus, InteractionType, AuthenticationResult, PopupRequest, RedirectRequest, AccountInfo } from '@azure/msal-browser'
 import { filter, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +22,8 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
     private authService: MsalService,
-    private msalBroadcastService: MsalBroadcastService
+    private msalBroadcastService: MsalBroadcastService,
+    private router: Router
   ){ }
 
   ngOnInit(): void {
@@ -43,10 +44,11 @@ export class AppComponent implements OnInit, OnDestroy {
      this.account = accounts[0];
     }
     this.loginDisplay = this.authService.instance.getAllAccounts().length > 0;
+    if(this.loginDisplay)
+      this.router.navigate(['sync-info'])
   }
 
   login() {
-    debugger
     if (this.msalGuardConfig.interactionType === InteractionType.Popup) {
       if (this.msalGuardConfig.authRequest){
         this.authService.loginPopup({...this.msalGuardConfig.authRequest} as PopupRequest)
