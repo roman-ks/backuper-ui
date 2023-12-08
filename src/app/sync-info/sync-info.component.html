@@ -1,1 +1,6 @@
 <p>sync-info works!</p>
+<div *ngIf="account!=null">
+    <p>Name: {{account?.name}}</p>
+    <p>Username: {{account?.username}}</p>
+    <p>Tenant: {{account?.tenantId}}</p>
+</div>

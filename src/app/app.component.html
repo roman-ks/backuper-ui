@@ -1,11 +1,8 @@
-<div *ngIf="account">
-  <p>Name: {{account.name}}</p>
-  <p>Username: {{account.username}}</p>
-  <p>Tenant: {{account.tenantId}}</p>
-  <button mat-raised-button (click)="logout()">Logout</button>
-</div>
 <div *ngIf="!loginDisplay">
-  <button mat-raised-button *ngIf="!loginDisplay" (click)="login()">Login</button>
+  <button mat-raised-button (click)="login()">Login</button>
+</div>
+<div *ngIf = "loginDisplay">
+  <button mat-raised-button (click)="logout()">Logout</button>
 </div>
 
 <router-outlet></router-outlet>
